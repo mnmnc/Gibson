@@ -44,3 +44,4 @@ Temporary Items
 *.pcap
 .idea
 Wireshark
+*.pyc
