@@ -9,6 +9,7 @@ class Armitage:
 	execution_command = ""
 
 	def __init__(self, input_path, output_path, tshark_path):
+		print("ARMITAGE. Initiating")
 		self.input_path = input_path
 		self.output_path = output_path
 		self.tshark_path = tshark_path
@@ -48,12 +49,13 @@ class Armitage:
 		}
 
 	def add_field(self, category, name):
-		"""
+		"""print("ARMITAGE. Initiating")
 		Adds field to self./fields/
 		:param category: one of acceptable categories [frame, ip, tcp, icmp, dns, udp]
 		:param name: name of the field available under category specified
 		:return: appends selected field to /fields/
 		"""
+		print("ARMITAGE. Adding filed")
 		self.fields += self.network_fields_names[category][name]
 
 	def add_fields_by_category(self, category):
@@ -62,6 +64,7 @@ class Armitage:
 		:param category: one of acceptable categories [frame, ip, tcp, icmp, dns, udp]
 		:return: appends selected fields to /fields/
 		"""
+		print("ARMITAGE. Adding fields from category.")
 		for key in self.network_fields_names[category].keys():
 			self.fields +=  self.network_fields_names[category][key]
 
@@ -71,6 +74,7 @@ class Armitage:
 		:param category:
 		:return:
 		"""
+		print("ARMITAGE. Adding filters based on category.")
 		if category == "tcp":
 			self.filter = ' -R "(ip.proto == 6)" -2 '
 		elif category == "ip":
@@ -87,7 +91,7 @@ class Armitage:
 		Create final command
 		:return:
 		"""
-
+		print("ARMITAGE. Creating command.")
 		# Initial path checks
 		if not os.path.exists(self.tshark_path):
 			print("[ERR] Tshark path", self.tshark_path, "does not exist.")
@@ -121,6 +125,7 @@ class Armitage:
 		Executes tshark /shell required/
 		:return:
 		"""
+		print("ARMITAGE. Executing.")
 		try:
 			call(self.execution_command, shell=True)
 		except:
